@@ -4,7 +4,15 @@ public class Main {
 
     public static void main(String[] args) {
 //        pojazd();
-        firma();
+//        firma();
+        circle();
+
+
+    }
+
+    private static void circle() {
+        Circle circle = new Circle(5);
+        System.out.println(circle.getArea());
     }
 
     private static void firma() {
@@ -27,3 +35,5 @@ public class Main {
         System.out.println(car2);
     }
 }
+
+

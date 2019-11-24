@@ -27,4 +27,8 @@ public class Firma {
         
         return result;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
