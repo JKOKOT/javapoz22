@@ -6,13 +6,22 @@ public class Main {
 //        pojazd();
 //        firma();
         circle();
-
-
     }
 
     private static void circle() {
-        Circle circle = new Circle(5);
-        System.out.println(circle.getArea());
+        // Polimorfizm, bo używamy typu Shape:
+        Shape circle = new Circle(5);
+        Shape circle2 = new Circle("czerwony", 3);
+        Shape rectangle = new Rectangle("niebieski", 5);
+
+        printDetails(circle);
+        printDetails(circle2);
+        printDetails(rectangle);
+    }
+
+    private static void printDetails(Shape shape) {
+        System.out.println(shape.getArea());
+        System.out.println(shape.getLineColor());
     }
 
     private static void firma() {
