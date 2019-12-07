@@ -28,9 +28,15 @@ public class Board {
     @Override
     public String toString() {
         String result = "";
+        int index = 1;
         for (int x = 0; x < xSize; x++) {
             for (int y = 0; y < ySize; y++) {
-                result += "[" + board[x][y] + "]";
+                if(board[x][y] != '\u0000') {
+                    result += "[" + board[x][y] + "]";
+                } else {
+                    result += "[" + index + "]";
+                }
+                index++;
             }
             result += "\n";
         }
