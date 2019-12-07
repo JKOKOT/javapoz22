@@ -1,4 +1,4 @@
-package com.company.tictactoe;
+package com.company.tictactoe.piece;
 
 public class XPiece extends Piece {
     public XPiece() {
