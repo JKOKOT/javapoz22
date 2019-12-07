@@ -1,4 +1,4 @@
-package com.company.tictactoe.piece;
+package com.company.tictactoe.board.piece;
 
 public abstract class Piece {
     protected char sign;

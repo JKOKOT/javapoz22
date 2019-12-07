@@ -1,6 +1,6 @@
 package com.company.tictactoe.player;
 
-import com.company.tictactoe.piece.Piece;
+import com.company.tictactoe.board.piece.Piece;
 
 public abstract class Player {
     private Piece piece;

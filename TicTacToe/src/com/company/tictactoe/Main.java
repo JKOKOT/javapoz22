@@ -1,7 +1,7 @@
 package com.company.tictactoe;
 
-import com.company.tictactoe.piece.OPiece;
-import com.company.tictactoe.piece.XPiece;
+import com.company.tictactoe.board.piece.OPiece;
+import com.company.tictactoe.board.piece.XPiece;
 import com.company.tictactoe.player.AIPlayer;
 import com.company.tictactoe.player.HumanPlayer;
 import com.company.tictactoe.player.Player;
