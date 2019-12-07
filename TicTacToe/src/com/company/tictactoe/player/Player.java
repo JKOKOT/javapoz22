@@ -10,7 +10,7 @@ public abstract class Player {
         this.piece = piece;
     }
 
-    public char getSign() {
-        return piece.getSign();
+    public Piece getPiece() {
+        return piece;
     }
 }
