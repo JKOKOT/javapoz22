@@ -63,4 +63,19 @@ public class Board {
 
         return result;
     }
+
+    public boolean isFull() {
+        int size = xSize * ySize;
+        for(int i = 1; i <= size; i++) {
+            try {
+                if(getField(i).isEmpty()) {
+                    return false;
+                }
+            } catch (InvalidFieldIndex e) {
+                return true;
+            }
+        }
+
+        return true;
+    }
 }

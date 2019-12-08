@@ -4,6 +4,7 @@ import com.company.tictactoe.board.piece.Piece;
 
 public class Field {
     private Piece piece;
+
     public boolean isEmpty() {
         return piece == null;
     }

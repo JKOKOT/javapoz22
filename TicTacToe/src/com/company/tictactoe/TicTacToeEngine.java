@@ -6,9 +6,10 @@ import com.company.tictactoe.player.Player;
 import java.util.ArrayList;
 
 public class TicTacToeEngine {
-    ArrayList<Player> players = new ArrayList<>();
-    Judge judge = new Judge();
-    Board board;
+    private ArrayList<Player> players = new ArrayList<>();
+    private Judge judge;
+    private Board board;
+    private int moveCounter = 0;
 
     public TicTacToeEngine(Player player1, Player player2) {
         players.add(player1);
@@ -17,12 +18,12 @@ public class TicTacToeEngine {
 
     public void start() {
         board = new Board(3, 3);
-        int moveCounter = 0;
+        judge = new Judge(board);
 
-        while (judge.isGameOver()) {
+        while (!judge.isGameOver()) {
             Player currentPlayer = players.get(moveCounter % 2);
             int currentMove = currentPlayer.makeMove();
-            if (judge.checkMove(board, currentMove)) {
+            if (judge.checkMove(currentMove)) {
                 board.put(currentMove, currentPlayer.getPiece());
             } else {
                 System.out.println("Niepoprawny ruch");
