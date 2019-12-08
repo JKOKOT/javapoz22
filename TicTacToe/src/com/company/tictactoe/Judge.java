@@ -1,10 +1,21 @@
 package com.company.tictactoe;
 
 import com.company.tictactoe.board.Board;
+import com.company.tictactoe.board.Field;
 import com.company.tictactoe.board.InvalidFieldIndex;
 
 public class Judge {
     private Board board;
+    private final static int[][] WINNING_COMBINATIONS = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9},
+            {1, 4, 7},
+            {2, 5, 8},
+            {3, 6, 9},
+            {1, 5, 9},
+            {3, 5, 7}
+        };
 
     public Judge(Board board) {
         this.board = board;
@@ -22,7 +33,49 @@ public class Judge {
         return isWin() || board.isFull();
     }
 
-    private boolean isWin() {
+    public boolean isWin() {
+        for (int[] winningCombination: WINNING_COMBINATIONS) {
+            if (isWinningCombination(winningCombination)) {
+                return true;
+            }
+        }
 
+        return false;
+    }
+
+    private boolean isWinningCombination(int[] winningCombination) {
+        Field firstPiece;
+        Field secondPiece;
+        Field thirdPiece;
+
+        try {
+            firstPiece = board.getField(winningCombination[0]);
+            secondPiece = board.getField(winningCombination[1]);
+            thirdPiece = board.getField(winningCombination[2]);
+        } catch (InvalidFieldIndex e) {
+            return false;
+        }
+
+        if (firstPiece.isEmpty()) {
+            return false;
+        }
+
+        if(
+            firstPiece.getPiece() == secondPiece.getPiece()
+            && secondPiece.getPiece() == thirdPiece.getPiece()
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }
+
+
+
+
+
+
+
+
+
