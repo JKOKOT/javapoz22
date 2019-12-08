@@ -60,9 +60,11 @@ public class Judge {
             return false;
         }
 
+        // koniecznie używamy .equals(),
+        // bo nie chcemy porównywać referencji, a wartości znaków getSign()
         if(
-            firstPiece.getPiece() == secondPiece.getPiece()
-            && secondPiece.getPiece() == thirdPiece.getPiece()
+            firstPiece.getPiece().equals(secondPiece.getPiece())
+            && secondPiece.getPiece().equals(thirdPiece.getPiece())
         ) {
             return true;
         }

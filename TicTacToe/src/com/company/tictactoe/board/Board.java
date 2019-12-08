@@ -1,11 +1,29 @@
 package com.company.tictactoe.board;
 
 import com.company.tictactoe.board.piece.Piece;
+import com.company.tictactoe.board.piece.XPiece;
 
 public class Board {
     private int xSize;
     private int ySize;
     private Field[][] board;
+
+    public Board(Board board) {
+        this(board.getxSize(), board.getySize());
+
+        int i = 1;
+        while (true) {
+            try {
+                if (!board.getField(i).isEmpty()) {
+                    this.put(i, board.getField(i).getPiece());
+                }
+            } catch (InvalidFieldIndex e) {
+                System.out.println("index " + i + " spowodował bład");
+                break;
+            }
+            i++;
+        }
+    }
 
     public Board(int xSize, int ySize) {
         this.xSize = xSize;
@@ -77,5 +95,17 @@ public class Board {
         }
 
         return true;
+    }
+
+    public int getxSize() {
+        return xSize;
+    }
+
+    public int getySize() {
+        return ySize;
+    }
+
+    public void remove(int i) {
+        put(i, null); // brak pionka to null
     }
 }

@@ -22,7 +22,15 @@ public class TicTacToeEngine {
 
         while (!judge.isGameOver()) {
             Player currentPlayer = players.get(moveCounter % 2);
-            int currentMove = currentPlayer.makeMove();
+
+            // Tworząc kopię Board zabezpieczamy się przed
+            // "hackowaniem" przez graczy, bo nie mogą wprowadzić nieuczciwie znaku:
+            Board copyBoard = new Board(board);
+
+            int currentMove = currentPlayer.makeMove(copyBoard);
+
+            System.out.println(board);
+
             if (judge.checkMove(currentMove)) {
                 board.put(currentMove, currentPlayer.getPiece());
             } else {
