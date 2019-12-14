@@ -3,6 +3,7 @@ package com.company.tictactoe;
 import com.company.tictactoe.board.Board;
 import com.company.tictactoe.board.Field;
 import com.company.tictactoe.board.InvalidFieldIndex;
+import com.company.tictactoe.board.piece.Piece;
 
 public class Judge {
     private Board board;
@@ -37,6 +38,18 @@ public class Judge {
         for (int[] winningCombination: WINNING_COMBINATIONS) {
             if (isWinningCombination(winningCombination)) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isWin(Piece piece) {
+        for (int[] winningCombination: WINNING_COMBINATIONS) {
+            if (isWinningCombination(winningCombination)) {
+                try {
+                    return board.getField(winningCombination[0]).getPiece().equals(piece);
+                }catch (InvalidFieldIndex e) {}
             }
         }
 
