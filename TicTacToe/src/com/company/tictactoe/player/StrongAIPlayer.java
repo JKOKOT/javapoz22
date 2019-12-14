@@ -22,9 +22,8 @@ public class StrongAIPlayer extends Player {
                     board.put(i, piece);
 
                     int score = scoreBoard(board, true);
-                    if (score >= 0) {
-                        moves.put(i, score);
-                    }
+                    moves.put(i, score);
+
 
                     board.remove(i);
                 }
@@ -57,16 +56,16 @@ public class StrongAIPlayer extends Player {
         int score = isMaximizing ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         Judge coach = new Judge(boardCopy);
 
-        if(coach.isGameOver() && !coach.isWin()) {
-            return 0;
-        }
-
         if (coach.isWin(piece)) {
             return 10;
         }
 
         if (coach.isWin(opponentPiece)) {
             return -10;
+        }
+
+        if(coach.isGameOver()) {
+            return 0;
         }
 
         for (int i = 1; true; i++) {
