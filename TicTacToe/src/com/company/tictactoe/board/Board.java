@@ -18,7 +18,7 @@ public class Board {
                     this.put(i, board.getField(i).getPiece());
                 }
             } catch (InvalidFieldIndex e) {
-                System.out.println("index " + i + " spowodował bład");
+//                System.out.println("index " + i + " spowodował bład");
                 break;
             }
             i++;
