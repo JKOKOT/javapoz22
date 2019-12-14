@@ -24,21 +24,26 @@ public class AIPlayer extends Player {
 
     @Override
     public int makeMove(Board board) {
+        ArrayList<Integer> moves = new ArrayList<>();
         for (int i = 1; true; i++) {
             try {
                 if (board.getField(i).isEmpty()) {
                     board.put(i, piece);
 
-
-                    if (scoreBoard(board, true) == 1) {
-                        return i;
+                    System.out.println(board);
+                    System.out.println(scoreBoard(board, true));
+                    if (scoreBoard(board, true) >= 0) {
+                        moves.add(i);
                     }
 
                     board.remove(i);
                 }
             } catch (InvalidFieldIndex e) {
+                break;
             }
         }
+
+        return Collections.max(moves);
 
 //        return getGambit();
 
@@ -62,30 +67,23 @@ public class AIPlayer extends Player {
 
         int score = isMaximizing ? Integer.MIN_VALUE : Integer.MAX_VALUE;
         Judge coach = new Judge(boardCopy);
+
         if(coach.isGameOver() && !coach.isWin()) {
-//            System.out.println(board);
-//            System.out.println("isMaximizing:" + isMaximizing);
-//            System.out.println("score:" + 0);
             return 0;
         }
 
-        if ((coach.isWin(piece) && isMaximizing) || (coach.isWin(opponentPiece) && !isMaximizing)) {
-//            System.out.println(board);
-//            System.out.println("isMaximizing:" + isMaximizing);
-//            System.out.println("score:" + 1);
-            return 1;
+        if (coach.isWin(piece)) {
+            return 10;
         }
-        if ((coach.isWin(opponentPiece) && isMaximizing) || (coach.isWin(piece) && !isMaximizing)) {
-//            System.out.println(board);
-//            System.out.println("isMaximizing:" + isMaximizing);
-//            System.out.println("score:" + -1);
-            return -1;
+
+        if (coach.isWin(opponentPiece)) {
+            return -10;
         }
 
         for (int i = 1; true; i++) {
             try {
                 if (boardCopy.getField(i).isEmpty()) {
-                    boardCopy.put(i, isMaximizing ? piece : opponentPiece);
+                    boardCopy.put(i, isMaximizing ? opponentPiece : piece);
                     if (isMaximizing) {
                         score = Math.max(scoreBoard(boardCopy, !isMaximizing), score);
                     } else {
