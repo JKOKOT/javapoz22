@@ -71,11 +71,11 @@ public class StrongAIPlayer extends Player {
         for (int i = 1; true; i++) {
             try {
                 if (boardCopy.getField(i).isEmpty()) {
-                    boardCopy.put(i, isMaximizing ? opponentPiece : piece);
+                    boardCopy.put(i, whosMove());
                     if (isMaximizing) {
-                        score = Math.max(scoreBoard(boardCopy, !isMaximizing), score);
+                        score = Math.max(scoreBoard(boardCopy, true), score);
                     } else {
-                        score = Math.min(scoreBoard(boardCopy, !isMaximizing), score);
+                        score = Math.min(scoreBoard(boardCopy, false), score);
                     }
                     boardCopy.remove(i);
                 }
@@ -85,5 +85,9 @@ public class StrongAIPlayer extends Player {
         }
 
         return score;
+    }
+
+    private Piece whosMove() {
+
     }
 }
