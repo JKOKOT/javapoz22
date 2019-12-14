@@ -2,7 +2,7 @@ package com.company.tictactoe;
 
 import com.company.tictactoe.board.piece.OPiece;
 import com.company.tictactoe.board.piece.XPiece;
-import com.company.tictactoe.player.AIPlayer;
+import com.company.tictactoe.player.StrongAIPlayer;
 import com.company.tictactoe.player.HumanPlayer;
 import com.company.tictactoe.player.Player;
 
@@ -12,8 +12,8 @@ public class Main {
     final static String NEW_AI_AI_GAME = "Nowa gra AI vs AI";
     final static String EXIT = "Zakończ program";
     public static void main(String[] args) {
-        Player player1 = new AIPlayer(new XPiece());
-        Player player2 = new AIPlayer(new OPiece());
+        Player player1 = new StrongAIPlayer(new XPiece());
+        Player player2 = new StrongAIPlayer(new OPiece());
 
         Menu menu = new Menu();
         menu.add(NEW_AI_GAME);
@@ -33,8 +33,8 @@ public class Main {
                 break;
 
             case NEW_AI_AI_GAME:
-                player1 = new AIPlayer(new OPiece());
-                player2 = new AIPlayer(new XPiece());
+                player1 = new StrongAIPlayer(new OPiece());
+                player2 = new StrongAIPlayer(new XPiece());
                 break;
 
             default:
