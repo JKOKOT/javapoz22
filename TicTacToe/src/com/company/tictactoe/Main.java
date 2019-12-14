@@ -12,8 +12,8 @@ public class Main {
     final static String NEW_AI_AI_GAME = "Nowa gra AI vs AI";
     final static String EXIT = "Zakończ program";
     public static void main(String[] args) {
-        Player player1 = new AIPlayer(new OPiece());
-        Player player2 = new AIPlayer(new XPiece());
+        Player player1 = new AIPlayer(new XPiece());
+        Player player2 = new AIPlayer(new OPiece());
 
         Menu menu = new Menu();
         menu.add(NEW_AI_GAME);
