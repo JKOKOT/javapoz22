@@ -3,11 +3,11 @@ package com.company.tictactoe;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
-    ArrayList<String> elements = new ArrayList<>();
+public class Menu<T> {
+    ArrayList<T> elements = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public void add(String element) {
+    public void add(T element) {
         elements.add(element);
     }
 
@@ -17,7 +17,8 @@ public class Menu {
         }
     }
 
-    public String chosenOptions() {
+    public T showAndGetSelected() {
+        print();
         return elements.get(scanner.nextInt() - 1);
     }
 }

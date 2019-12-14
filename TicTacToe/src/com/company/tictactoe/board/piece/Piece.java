@@ -27,4 +27,9 @@ public abstract class Piece {
         Piece otherPiece = (Piece)obj;
         return otherPiece.getSign() == this.getSign();
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(getSign());
+    }
 }

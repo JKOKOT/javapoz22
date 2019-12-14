@@ -49,9 +49,7 @@ public class StrongAIPlayer extends Player {
     }
 
     private int scoreBoard(Board board, Piece whosMove) {
-//        Board boardCopy = new Board(board);
-
-        int score = whosMove.equals(opponentPiece) ? 100 : -100 ;
+        int score = whosMove.equals(opponentPiece) ? 100 : -100;
 
         Judge coach = new Judge(board);
 
