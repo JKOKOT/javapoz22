@@ -19,13 +19,11 @@ public class StrongAIPlayer extends Player {
         for (int i = 1; true; i++) {
             try {
                 if (board.getField(i).isEmpty()) {
-                    board.put(i, piece);
+                    Board copyBoard = new Board(board);
+                    copyBoard.put(i, piece);
 
-                    int score = scoreBoard(board, true);
+                    int score = scoreBoard(copyBoard, whosMove(copyBoard));
                     moves.put(i, score);
-
-
-                    board.remove(i);
                 }
             } catch (InvalidFieldIndex e) {
                 break;
@@ -50,11 +48,12 @@ public class StrongAIPlayer extends Player {
         return bestMove;
     }
 
-    private int scoreBoard(Board board, boolean isMaximizing) {
-        Board boardCopy = new Board(board);
+    private int scoreBoard(Board board, Piece whosMove) {
+//        Board boardCopy = new Board(board);
 
-        int score = isMaximizing ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        Judge coach = new Judge(boardCopy);
+        int score = whosMove.equals(opponentPiece) ? 100 : -100 ;
+
+        Judge coach = new Judge(board);
 
         if (coach.isWin(piece)) {
             return 10;
@@ -70,14 +69,14 @@ public class StrongAIPlayer extends Player {
 
         for (int i = 1; true; i++) {
             try {
-                if (boardCopy.getField(i).isEmpty()) {
-                    boardCopy.put(i, whosMove());
-                    if (isMaximizing) {
-                        score = Math.max(scoreBoard(boardCopy, true), score);
+                if (board.getField(i).isEmpty()) {
+                    Board copyBoard = new Board(board);
+                    copyBoard.put(i, whosMove);
+                    if (whosMove.equals(piece)) {
+                        score = Math.max(scoreBoard(copyBoard, whosMove(copyBoard)), score);
                     } else {
-                        score = Math.min(scoreBoard(boardCopy, false), score);
+                        score = Math.min(scoreBoard(copyBoard, whosMove(copyBoard)), score);
                     }
-                    boardCopy.remove(i);
                 }
             } catch (InvalidFieldIndex e) {
                 break;
@@ -87,7 +86,11 @@ public class StrongAIPlayer extends Player {
         return score;
     }
 
-    private Piece whosMove() {
+    private Piece whosMove(Board board) {
+        if (board.getLastPut().equals(piece)) {
+            return opponentPiece;
+        }
 
+        return piece;
     }
 }

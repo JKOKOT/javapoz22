@@ -7,9 +7,11 @@ public class Board {
     private int xSize;
     private int ySize;
     private Field[][] board;
+    private Piece lastPut;
 
     public Board(Board board) {
         this(board.getxSize(), board.getySize());
+        this.lastPut = board.getLastPut();
 
         int i = 1;
         while (true) {
@@ -61,6 +63,7 @@ public class Board {
                 index++;
             }
         }
+        lastPut = piece;
     }
 
     @Override
@@ -107,5 +110,9 @@ public class Board {
 
     public void remove(int i) {
         put(i, null); // brak pionka to null
+    }
+
+    public Piece getLastPut() {
+        return lastPut;
     }
 }
