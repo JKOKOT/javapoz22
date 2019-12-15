@@ -11,12 +11,12 @@ public class TicTacToeEngine {
     private Board board;
     private int moveCounter = 0;
 
-    public TicTacToeEngine(Player player1, Player player2) {
-        players.add(player1);
-        players.add(player2);
+    public TicTacToeEngine(Player playerOne, Player playerTwo) {
+        players.add(playerOne);
+        players.add(playerTwo);
     }
 
-    public void start() {
+    public GameResult start() {
         board = new Board(3, 3);
         judge = new Judge(board);
 
@@ -42,5 +42,11 @@ public class TicTacToeEngine {
 
             moveCounter++;
         }
+
+        if (!judge.isWin()) {
+            return GameResult.DRAW;
+        }
+
+        return null;
     }
 }
