@@ -47,6 +47,10 @@ public class TicTacToeEngine {
             return GameResult.DRAW;
         }
 
-        return null;
+        if(judge.isWin(players.get(0).getPiece())) {
+            return GameResult.PLAYER_ONE_WON;
+        } else {
+            return GameResult.PLAYER_TWO_WON;
+        }
     }
 }
