@@ -33,18 +33,18 @@ public class Main {
 
         switch ((String)menu.showAndGetSelected()) {
             case NEW_AI_GAME:
-                player1 = new HumanPlayer((menuSelectPiece.showAndGetSelected() == CHOOSE_XPIECE) ? new XPiece() : new OPiece());
-                player2 = new StrongAIPlayer((menuSelectPiece.showAndGetSelected() == CHOOSE_OPIECE) ? new XPiece() : new OPiece());
+                player1 = new HumanPlayer((Piece) menuSelectPiece.showAndGetSelected());
+                player2 = new StrongAIPlayer(opponentPiece(player1));
                 break;
 
             case NEW_HUMAN_GAME:
-                player1 = new HumanPlayer(new XPiece());
-                player2 = new HumanPlayer(new OPiece());
+                player1 = new HumanPlayer((Piece) menuSelectPiece.showAndGetSelected());
+                player2 = new HumanPlayer(opponentPiece(player1));
                 break;
 
             case NEW_AI_AI_GAME:
-                player1 = new StrongAIPlayer(new OPiece());
-                player2 = new StrongAIPlayer(new XPiece());
+                player1 = new StrongAIPlayer(new XPiece());
+                player2 = new StrongAIPlayer(new OPiece());
                 break;
 
             default:
@@ -53,5 +53,9 @@ public class Main {
 
         TicTacToeEngine engine = new TicTacToeEngine(player1, player2);
         engine.start();
+    }
+
+    private static Piece opponentPiece(Player player) {
+        return player.getPiece() instanceof OPiece ? new XPiece() : new OPiece();
     }
 }

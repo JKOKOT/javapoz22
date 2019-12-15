@@ -27,9 +27,9 @@ public class TicTacToeEngine {
             // "hackowaniem" przez graczy, bo nie mogą wprowadzić nieuczciwie znaku:
             Board copyBoard = new Board(board);
 
+            System.out.println(board);
             int currentMove = currentPlayer.makeMove(copyBoard);
 
-            System.out.println(board);
 
             if (judge.checkMove(currentMove)) {
                 board.put(currentMove, currentPlayer.getPiece());
