@@ -15,7 +15,7 @@ public class StrongAIPlayer extends Player {
 
     @Override
     public int makeMove(Board board) {
-        HashMap<Integer, Integer> moves = new HashMap<>();
+        HashMap<Integer, Integer> movesMap = new HashMap<>();
         for (int i = 1; true; i++) {
             try {
                 if (board.getField(i).isEmpty()) {
@@ -23,29 +23,24 @@ public class StrongAIPlayer extends Player {
                     copyBoard.put(i, piece);
 
                     int score = scoreBoard(copyBoard, whosMove(copyBoard));
-                    moves.put(i, score);
+                    movesMap.put(i, score);
                 }
             } catch (InvalidFieldIndex e) {
                 break;
             }
         }
+        System.out.println(movesMap);
 
-        System.out.println(moves);
-        int bestMove = 1;
-        int bestValue = Integer.MIN_VALUE;
-        for(Map.Entry<Integer, Integer> entry : moves.entrySet()) {
-            int move = entry.getKey();
-            int value = entry.getValue();
-
-            if (value > bestValue) {
-                bestMove = move;
-                bestValue = value;
+        List<Integer> moves = new ArrayList(movesMap.keySet());
+        Collections.shuffle(moves);
+        int bestValue = Collections.max(movesMap.values());
+        for (Integer move : moves) {
+            if (movesMap.get(move) == bestValue) {
+                return move;
             }
-
-            // do what you have to do here
-            // In your case, another loop.
         }
-        return bestMove;
+
+        return moves.get(0); // tu i tak nigdy nie dojdzie
     }
 
     private int scoreBoard(Board board, Piece whosMove) {

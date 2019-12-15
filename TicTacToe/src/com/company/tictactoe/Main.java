@@ -13,10 +13,6 @@ public class Main {
     final static String NEW_AI_AI_GAME = "Nowa gra AI vs AI";
     final static String EXIT = "Zakończ program";
 
-    final static String CHOOSE_XPIECE = "X";
-    final static String CHOOSE_OPIECE = "O";
-
-
     public static void main(String[] args) {
         Player player1 = new StrongAIPlayer(new XPiece());
         Player player2 = new StrongAIPlayer(new OPiece());
